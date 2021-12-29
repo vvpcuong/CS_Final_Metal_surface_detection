@@ -7,9 +7,13 @@ import cv2
 from matplotlib.patches import Rectangle
 import time
 import calendar
+from pygame import mixer
 
 import tensorflow as tf
 from tensorflow import keras
+
+warning = 'sound/alarm.mp3'
+alarm = 'sound/alarm_2.mp3'
 
 # Import Model and prediction classes
 from tensorflow import keras
@@ -44,7 +48,7 @@ st.set_page_config(
      page_title="CS_Final project: Metal defect detection",
      page_icon="🧊",
      layout="wide",
-     initial_sidebar_state="auto",
+     initial_sidebar_state="expanded",
  )
 
 
@@ -206,12 +210,16 @@ elif choice == 'Demo':
             st.markdown(body_log,unsafe_allow_html=True)
         text = log_entry + ' has been found.'
         st.header('Machine status:')
+        
         # Display Crease DEFECT
         if log_entry == 'crease':
             st.subheader(text)
             space_1,space_2,space_3 = st.columns([2,5,0.3])
             with space_2:
                 st.image('photo\machine\machine_1.png')
+            mixer.init()
+            mixer.music.load(warning)
+            mixer.music.play()
             st.markdown('The part 1 is moderately damaged, please prepare the following tools to repair:')
             col_1, col_2, col_3 = st.columns(3)
             with col_1:
@@ -222,14 +230,16 @@ elif choice == 'Demo':
                 st.image('photo\photo_tool/1_2.jpg')      
             with col_3:
                 st.markdown("<p style = 'text-align: center;'>Tool 1.3</p>", unsafe_allow_html=True)
-                st.image('photo\photo_tool/1_3.jpg')
-                
+                st.image('photo\photo_tool/1_3.jpg')        
         # Display Cresent_gap defect
         elif log_entry == 'crescent_gap':
             st.subheader(text)
             space_1,space_2,space_3 = st.columns([2,5,0.3])
             with space_2:
                 st.image('photo\machine\machine_2.png')
+            mixer.init()
+            mixer.music.load(warning)
+            mixer.music.play()
             st.markdown('The part 2 is moderately damaged, please prepare the following tools to repair:')
             col_1, col_2, col_3 = st.columns(3)
             with col_1:
@@ -247,6 +257,9 @@ elif choice == 'Demo':
             space_1,space_2,space_3 = st.columns([2,5,0.3])
             with space_2:
                 st.image('photo\machine\machine_3.png')
+            mixer.init()
+            mixer.music.load(warning)
+            mixer.music.play()
             st.markdown('The part 3 is moderately damaged, please prepare the following tools to repair:')
             col_1, col_2, col_3 = st.columns(3)
             with col_1:
@@ -264,6 +277,9 @@ elif choice == 'Demo':
             space_1,space_2,space_3 = st.columns([2,5,0.3])
             with space_2:
                 st.image('photo\machine\machine_4.png')
+            mixer.init()
+            mixer.music.load(warning)
+            mixer.music.play()
             st.markdown('The part 4 is moderately damaged, please prepare the following tools to repair:')
             col_1, col_2, col_3 = st.columns(3)
             with col_1:
@@ -281,6 +297,9 @@ elif choice == 'Demo':
             space_1,space_2,space_3 = st.columns([2,5,0.3])
             with space_2:
                 st.image('photo\machine\machine_5.png')
+            mixer.init()
+            mixer.music.load(alarm)
+            mixer.music.play()
             st.markdown('The part 1 is severely damaged, please prepare the following tools to repair:')
             col_1, col_2, col_3 = st.columns(3)
             with col_1:
@@ -298,6 +317,9 @@ elif choice == 'Demo':
             space_1,space_2,space_3 = st.columns([2,5,0.3])
             with space_2:
                 st.image('photo\machine\machine_6.png')
+            mixer.init()
+            mixer.music.load(alarm)
+            mixer.music.play()
             st.markdown('The part 2 is severely damaged, please prepare the following tools to repair:')
             col_1, col_2, col_3 = st.columns(3)
             with col_1:
@@ -315,6 +337,9 @@ elif choice == 'Demo':
             space_1,space_2,space_3 = st.columns([2,5,0.3])
             with space_2:
                 st.image('photo\machine\machine_7.png')
+            mixer.init()
+            mixer.music.load(alarm)
+            mixer.music.play()
             st.markdown('The part 3 is severely damaged, please prepare the following tools to repair:')
             col_1, col_2, col_3 = st.columns(3)
             with col_1:
@@ -332,6 +357,9 @@ elif choice == 'Demo':
             space_1,space_2,space_3 = st.columns([2,5,0.3])
             with space_2:
                 st.image('photo\machine\machine_8.png')
+            mixer.init()
+            mixer.music.load(alarm)
+            mixer.music.play()
             st.markdown('The part 4 is severely damaged, please prepare the following tools to repair:')
             col_1, col_2, col_3 = st.columns(3)
             with col_1:
@@ -350,6 +378,9 @@ elif choice == 'Demo':
             space_1,space_2,space_3 = st.columns([2,5,0.3])
             with space_2:
                 st.image('photo\machine\machine_9.png')
+            mixer.init()
+            mixer.music.load(warning)
+            mixer.music.play()
             st.markdown('The part 1 and 5 are moderately damaged, please prepare the following tools to repair:')
             col_1, col_2, col_3 = st.columns(3)
             with col_1:
@@ -367,6 +398,9 @@ elif choice == 'Demo':
             space_1,space_2,space_3 = st.columns([2,5,0.3])
             with space_2:
                 st.image('photo\machine\machine_10.png')
+            mixer.init()
+            mixer.music.load(warning)
+            mixer.music.play()
             st.markdown('The part 1 and 2 are moderate damaged, please prepare the following tools to repair:')
             col_1, col_2, col_3 = st.columns(3)
             with col_1:
@@ -380,6 +414,7 @@ elif choice == 'Demo':
                 st.image('photo\photo_tool/2_3.jpg')
 
     else:
+
         st.header('Machine status:')
         st.subheader('The machine is working normally.')
         space_1,space_2,space_3 = st.columns([2,5,0.3])
